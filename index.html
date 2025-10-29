@@ -10,6 +10,7 @@
     
     <title>Paquete de dibujos en PDF + Piezas + Ensambles + SolidWorks 2022 | Diego Gaona</title>
     <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -34,10 +35,20 @@
         }
     }
     
-    // Enviar PageView con tipo de dispositivo
-    fbq('track', 'PageView', {
-        device_type: detectarDispositivo()
-    });
+    // Esperar a que el pixel esté listo y enviar PageView
+    if (typeof fbq !== 'undefined') {
+        const dispositivo = detectarDispositivo();
+        
+        fbq('track', 'PageView', {
+            device_type: dispositivo
+        });
+        
+        // Para debugging (quítalo después)
+        console.log('Meta Pixel - Evento enviado:', {
+            device_type: dispositivo,
+            pixel_id: '373277814132384'
+        });
+    }
 </script>
 <noscript>
     <img height="1" width="1" style="display:none"
