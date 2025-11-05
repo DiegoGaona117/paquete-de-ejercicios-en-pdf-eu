@@ -7,336 +7,73 @@
     <meta name="keywords" content="SolidWorks, planos PDF, ejercicios CAD, dibujo técnico, SolidWorks 2022, Diego Gaona">
     <meta name="author" content="Diego Gaona">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0066cc">
     
     <title>Paquete de dibujos en PDF + Piezas + Ensambles + SolidWorks 2022 | Diego Gaona</title>
+    <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
     
-    <!-- Preconnect a dominios críticos -->
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
-    <link rel="preconnect" href="https://www.facebook.com" crossorigin>
-    <link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
-    <link rel="dns-prefetch" href="https://pay.hotmart.com">
+    fbq('init', '373277814132384');
     
-    <!-- CSS Crítico COMPLETO Inline para prevenir CLS -->
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1.6;color:#333;background:#f5f5f5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-        
-        /* CRÍTICO: Dimensiones fijas para prevenir CLS */
-        .main-container{max-width:1200px;margin:0 auto;padding:20px;background:#fff;min-height:100vh}
-        
-        .hero-section{
-            display:grid;
-            grid-template-columns:1fr;
-            gap:30px;
-            padding:40px 20px;
-            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-            color:#fff;
-            border-radius:12px;
-            margin-bottom:30px;
-            min-height:600px; /* CRÍTICO: altura mínima fija */
+    // Detectar tipo de dispositivo
+    function detectarDispositivo() {
+        const ua = navigator.userAgent;
+        if (/iPad|Android(?!.*mobile)/i.test(ua)) {
+            return 'tablet';
+        } else if (/Mobile|iPhone|Android/i.test(ua)) {
+            return 'mobile';
+        } else {
+            return 'desktop';
         }
-        
-        .hero-content{
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-        }
-        
-        .hero-content h1{
-            font-size:clamp(24px,5vw,36px);
-            font-weight:700;
-            margin-bottom:20px;
-            line-height:1.2;
-            min-height:72px; /* CRÍTICO: altura mínima del título */
-        }
-        
-        .rating{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin:15px 0;
-            height:32px; /* CRÍTICO: altura fija */
-        }
-        
-        .rating-number{font-size:24px;font-weight:700}
-        .stars{color:#ffd700;font-size:20px;letter-spacing:2px}
-        .author{font-size:16px;opacity:.9;margin-bottom:20px;height:24px}
-        
-        .buy-button,.buy-button2{
-            width:100%;
-            padding:16px 32px;
-            font-size:18px;
-            font-weight:700;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            transition:transform .2s,box-shadow .2s;
-            margin-bottom:12px;
-            height:56px; /* CRÍTICO: altura fija */
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-        
-        .buy-button{background:#ff6b35;color:#fff}
-        .buy-button:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(255,107,53,.3)}
-        .buy-button2{background:#fff;color:#667eea}
-        .buy-button2:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(102,126,234,.3)}
-        
-        /* CRÍTICO: Contenedor de video con aspect ratio fijo */
-        .video-container{
-            position:relative;
-            width:100%;
-            height:0;
-            padding-bottom:56.25%; /* 16:9 aspect ratio */
-            overflow:hidden;
-            border-radius:12px;
-            background:#000;
-            min-height:250px; /* CRÍTICO: altura mínima en móvil */
-        }
-        
-        .video-container iframe{
-            position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            border:none;
-        }
-        
-        .feature-card{
-            background:#fff;
-            padding:30px;
-            border-radius:12px;
-            box-shadow:0 4px 6px rgba(0,0,0,.1);
-            margin-bottom:30px;
-        }
-        
-        .package-title{
-            font-size:24px;
-            font-weight:700;
-            color:#667eea;
-            margin-bottom:20px;
-            min-height:32px; /* CRÍTICO */
-        }
-        
-        .package-list{list-style:none;padding:0}
-        .package-list li{
-            padding:12px 0;
-            padding-left:28px;
-            position:relative;
-            border-bottom:1px solid #f0f0f0;
-            font-size:16px;
-            min-height:48px; /* CRÍTICO: altura mínima por item */
-        }
-        .package-list li:before{content:'✓';position:absolute;left:0;color:#4caf50;font-weight:700;font-size:20px}
-        .package-list li:last-child{border-bottom:none}
-        .highlight{color:#ff6b35;font-weight:600}
-        
-        /* Curso destacado con dimensiones fijas */
-        .curso-destacado{
-            background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
-            padding:40px 30px;
-            border-radius:12px;
-            margin-bottom:30px;
-            min-height:400px; /* CRÍTICO */
-        }
-        
-        .curso-badge{
-            background:#ff6b35;
-            color:#fff;
-            padding:8px 16px;
-            border-radius:20px;
-            display:inline-block;
-            font-weight:700;
-            margin-bottom:20px;
-            height:36px; /* CRÍTICO */
-        }
-        
-        .curso-content{
-            display:grid;
-            grid-template-columns:1fr;
-            gap:30px;
-            align-items:center;
-        }
-        
-        .curso-image{
-            width:100%;
-            height:300px; /* CRÍTICO: altura fija */
-            overflow:hidden;
-            border-radius:12px;
-        }
-        
-        .curso-image img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            display:block;
-        }
-        
-        .curso-info h3{
-            font-size:28px;
-            color:#333;
-            margin-bottom:10px;
-            min-height:36px; /* CRÍTICO */
-        }
-        
-        .curso-subtitle{
-            font-size:18px;
-            color:#667eea;
-            font-weight:600;
-            margin-bottom:15px;
-            min-height:28px; /* CRÍTICO */
-        }
-        
-        .curso-description{
-            font-size:16px;
-            line-height:1.8;
-            color:#555;
-            margin-bottom:20px;
-            min-height:60px; /* CRÍTICO */
-        }
-        
-        .btn-ver-curso{
-            background:#667eea;
-            color:#fff;
-            padding:14px 28px;
-            border:none;
-            border-radius:8px;
-            font-size:16px;
-            font-weight:700;
-            cursor:pointer;
-            transition:all .3s;
-            height:50px; /* CRÍTICO */
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-        }
-        
-        .btn-ver-curso:hover{
-            background:#5568d3;
-            transform:translateY(-2px);
-            box-shadow:0 8px 16px rgba(102,126,234,.3);
-        }
-        
-        /* Installer section con dimensiones fijas */
-        .installer-section{
-            background:#fff;
-            padding:40px 30px;
-            border-radius:12px;
-            margin-bottom:30px;
-            min-height:600px; /* CRÍTICO */
-        }
-        
-        .content-wrapper{max-width:1000px;margin:0 auto}
-        
-        .header-content{
-            display:grid;
-            grid-template-columns:1fr;
-            gap:30px;
-            margin-bottom:40px;
-            align-items:center;
-        }
-        
-        .solidworks-logo{
-            width:100%;
-            height:200px; /* CRÍTICO: altura fija */
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-        
-        .solidworks-logo img{
-            max-width:100%;
-            height:auto;
-            max-height:200px;
-            display:block;
-        }
-        
-        .main-title{
-            font-size:clamp(24px,4vw,32px);
-            color:#333;
-            margin-bottom:15px;
-            line-height:1.3;
-            min-height:70px; /* CRÍTICO */
-        }
-        
-        .highlight-text{color:#667eea;font-weight:700}
-        
-        .subtitle{
-            font-size:18px;
-            color:#666;
-            line-height:1.6;
-            min-height:30px; /* CRÍTICO */
-        }
-        
-        .plans-showcase{
-            margin-top:40px;
-            text-align:center;
-        }
-        
-        .plans-image{
-            width:100%;
-            height:auto;
-            border-radius:12px;
-            box-shadow:0 8px 24px rgba(0,0,0,.15);
-            display:block;
-            aspect-ratio:3/2; /* CRÍTICO: aspect ratio fijo */
-            object-fit:cover;
-        }
-        
-        /* Placeholder para imágenes lazy */
-        .lazy-img{
-            background:linear-gradient(90deg,#f0f0f0 0%,#e0e0e0 50%,#f0f0f0 100%);
-            background-size:200% 100%;
-            animation:shimmer 1.5s infinite;
-        }
-        
-        @keyframes shimmer{
-            0%{background-position:200% 0}
-            100%{background-position:-200% 0}
-        }
-        
-        /* Responsive */
-        @media (min-width:768px){
-            .hero-section{
-                grid-template-columns:1fr 1fr;
-                align-items:center;
-                padding:60px 40px;
-                min-height:500px;
-            }
-            .main-container{padding:40px}
-            .curso-content{grid-template-columns:300px 1fr}
-            .curso-image{height:250px}
-            .header-content{grid-template-columns:300px 1fr}
-            .video-container{min-height:300px}
-        }
-        
-        @media (min-width:1024px){
-            .hero-section{min-height:450px}
-            .video-container{min-height:350px}
-        }
-    </style>
+    }
     
-    <!-- Meta Pixel Code Optimizado - carga DESPUÉS del contenido crítico -->
-    <script>
-        window.addEventListener('DOMContentLoaded',function(){
-            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init','373277814132384');
-            const ua=navigator.userAgent;
-            const dispositivo=/iPad|Android(?!.*mobile)/i.test(ua)?'tablet':/Mobile|iPhone|Android/i.test(ua)?'mobile':'desktop';
-            fbq('track','PageView');
-            fbq('trackCustom','Visita'+dispositivo.charAt(0).toUpperCase()+dispositivo.slice(1));
+    // Esperar a que el pixel esté listo y enviar PageView
+    if (typeof fbq !== 'undefined') {
+        const dispositivo = detectarDispositivo();
+        
+        fbq('track', 'PageView', {
+            device_type: dispositivo
         });
+        
+        // Para debugging (quítalo después)
+        console.log('Meta Pixel - Evento enviado:', {
+            device_type: dispositivo,
+            pixel_id: '373277814132384'
+        });
+    }
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
+    alt="Meta Pixel"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+     <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RN68VLQLTW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RN68VLQLTW');
+        gtag('config', 'G-QN502DE5XV');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1" alt=""></noscript>
+    <link rel="stylesheet" href="styles.css">
+       
 </head>
 
 <body>
+    <!-- Main Container -->
     <div class="main-container">
-        <!-- Hero Section con dimensiones fijas -->
+        
+        <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
                 <h1>Paquete de dibujos en PDF + Piezas + Ensambles + SolidWorks 2022</h1>
@@ -347,17 +84,23 @@
                 </div>
                 
                 <div class="author">Creado por Diego Gaona</div>
-                                
-                <a href="https://pay.hotmart.com/U80396963E?off=t6p713g1&checkoutMode=10&bid=1761737543793" target="_blank" rel="noopener noreferrer">
+                
+                <!--<div class="price-section">
+                    <span class="old-price">$299 MXN</span>
+                    <span class="new-price">$129 MXN</span>
+                </div>-->
+                
+                <a href="https://pay.hotmart.com/U80396963E?off=t6p713g1" target="_blank" rel="noopener noreferrer">
                     <button class="buy-button">Comprar Ahora</button>
                 </a>
 
-                <a href="https://diegogaona117.github.io/curso-de-introduccion-a-solidworks-diego-gaona/" target="_blank" rel="noopener noreferrer">
-                    <button class="buy-button2">Ver curso ¡Gratis!</button>
+                <a href="https://diegogaona117.github.io/pdf-gratuitos/" target="_blank" rel="noopener noreferrer">
+                    <button class="buy-button2">Ver Planos de muestra ¡Gratis!</button>
                 </a>
+                
+                <div class="tagline">¡El precio subirá cada día!</div>
             </div>
             
-            <!-- Video con aspect ratio fijo para prevenir CLS -->
             <div class="video-container">
                 <iframe 
                     src="https://www.youtube-nocookie.com/embed/iVwOJH0nfL4?rel=0&modestbranding=1" 
@@ -383,31 +126,32 @@
                 <li><span class="highlight">+ Video de instalación paso a paso</span></li>
                 <li><strong>+ Bonus por tiempo limitado</strong></li>
                 <li><span class="highlight">Curso de Solidworks: desde cero a certificación Internacional CSWA</span></li>
+                <!--<li><span class="highlight">Curso de introducción Autodesk Inventor</span></li>
+                <li><span class="highlight">Curso de introducción Catia V5</span></li>
+                <li><span class="highlight">Teoría y aplicaciones de falla por carga estática</span></li>
+                <li><span class="highlight">Introducción a los mecanismos</span></li>
+                <li><span class="highlight">Curso de Introducción a AutoCad</span></li>
+                <li><span class="highlight">Curso de introducción FreeCad</span></li>
+                <li><span class="highlight">Curso de introducción Excel</span></li>-->
             </ul>
         </section>
 
-        <section class="curso-destacado">
-            <div class="curso-badge">🎓 BONUS INCLUIDO</div>
-            <div class="curso-content">
-                <div class="curso-image">
-                    <!-- Imagen con dimensiones explícitas -->
-                    <img 
-                        src="https://static.wixstatic.com/media/32c95b_f83fa9493f8848d097eb7ca19d85a58e~mv2.webp" 
-                        alt="Curso de Solidworks"
-                        width="400"
-                        height="300"
-                        loading="lazy">
-                </div>
-                <div class="curso-info">
-                    <h3>Curso Completo de SolidWorks</h3>
-                    <p class="curso-subtitle">Desde cero a certificación Internacional CSWA</p>
-                    <p class="curso-description">Domina SolidWorks desde los fundamentos hasta prepararte para obtener tu certificación profesional reconocida internacionalmente.</p>
-                    <a href="https://cursodiegogaona.teachable.com/p/curso-de-solidworks-2020-preparate-para-cswa-diego-gaona-40" target="_blank" rel="noopener noreferrer">
-                        <button class="btn-ver-curso">Ver lo que incluye el curso →</button>
-                    </a>
-                </div>
-            </div>
-        </section>
+       <section class="curso-destacado">
+    <div class="curso-badge">🎓 BONUS INCLUIDO</div>
+    <div class="curso-content">
+        <div class="curso-image">
+            <img src="https://static.wixstatic.com/media/32c95b_f9b21a33914e4d69ac74aab1cc5e3613~mv2.webp" alt="Curso de Solidworks">
+        </div>
+        <div class="curso-info">
+            <h3>Curso Completo de SolidWorks</h3>
+            <p class="curso-subtitle">Desde cero a certificación Internacional CSWA</p>
+            <p class="curso-description">Domina SolidWorks desde los fundamentos hasta prepararte para obtener tu certificación profesional reconocida internacionalmente.</p>
+            <a href="https://cursodiegogaona.teachable.com/p/curso-de-solidworks-2020-preparate-para-cswa-diego-gaona-40" target="_blank" rel="noopener noreferrer">
+                <button class="btn-ver-curso">Ver lo que incluye el curso →</button>
+            </a>
+        </div>
+    </div>
+</section>
 
         <!-- Installer Section -->
         <section class="installer-section">
@@ -415,14 +159,21 @@
                 <div class="header-content">
                     <div class="solidworks-logo">
                         <picture>
-                            <source media="(max-width: 499px)" srcset="https://static.wixstatic.com/media/32c95b_1fb5d39a16d2429aa1544093b5b87170~mv2.webp">
-                            <source media="(min-width: 500px) and (max-width: 1024px)" srcset="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp">
-                            <img 
-                                src="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp" 
-                                alt="SolidWorks 2022 Logo"
-                                width="400"
-                                height="200"
-                                loading="lazy">
+                            <!-- Móvil (menos de 500px) -->
+                            <source media="(max-width: 499px)" 
+                                    srcset="https://static.wixstatic.com/media/32c95b_1fb5d39a16d2429aa1544093b5b87170~mv2.webp">
+                            
+                            <!-- Tablet (500px a 1024px) -->
+                            <source media="(min-width: 500px) and (max-width: 1024px)" 
+                                    srcset="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp">
+                            
+                            <!-- Desktop (más de 1024px) -->
+                            <img src="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp" 
+                                 alt="SolidWorks 2022 Logo" 
+                                 referrerpolicy="no-referrer"
+                                 loading="lazy"
+                                 width="400"
+                                 height="200">
                         </picture>
                     </div>
                     <div class="header-text">
@@ -436,56 +187,110 @@
                 <div class="plans-showcase">
                     <p class="subtitle"><strong>Planos en PDF que incluye este paquete</strong></p>
                     <picture>
-                        <source media="(max-width: 500px)" srcset="https://static.wixstatic.com/media/32c95b_9f05741cd961473f89ed4fe317e2f866~mv2.webp">
-                        <source media="(min-width: 501px) and (max-width: 1023px)" srcset="https://static.wixstatic.com/media/32c95b_fd3409c7c60b4c67aaa717e3923210f0~mv2.webp">
-                        <img 
-                            src="https://static.wixstatic.com/media/32c95b_e2a09fdfc6d24c88a8e46118e156c8f1~mv2.webp" 
-                            alt="Ejemplos de planos técnicos de SolidWorks" 
-                            class="plans-image"
-                            width="1200"
-                            height="800"
-                            loading="lazy">
+                        <!-- Imagen para móvil (se carga en pantallas menores a 768px) -->
+                        <source media="(max-width: 500px)" 
+                                srcset="https://static.wixstatic.com/media/32c95b_9f05741cd961473f89ed4fe317e2f866~mv2.webp">
+                        
+                        <!-- Imagen para tablet (se carga en pantallas de 768px a 1023px) -->
+                        <source media="(min-width: 501px) and (max-width: 1023px)" 
+                                srcset="https://static.wixstatic.com/media/32c95b_fd3409c7c60b4c67aaa717e3923210f0~mv2.webp">
+                        
+                        <!-- Imagen para escritorio (por defecto, pantallas mayores a 1024px) -->
+                        <img src="https://static.wixstatic.com/media/32c95b_e2a09fdfc6d24c88a8e46118e156c8f1~mv2.webp" 
+                             alt="Ejemplos de planos técnicos de SolidWorks" 
+                             class="plans-image"
+                             referrerpolicy="no-referrer"
+                             loading="lazy"
+                             width="1200"
+                             height="800">
                     </picture>
+                    <div class="image-overlay"></div>
                 </div>
             </div>
         </section>
+
+       <!-- Evento Meta Pixel: Scroll Bottom -->
+<script>
+(function() {
+    'use strict';
+    
+    let eventSent = false;
+    const SCROLL_PERCENTAGE = 75; // Porcentaje de scroll para activar
+
+    function sendEvent() {
+        if (eventSent) return;
+        
+        if (typeof fbq !== 'undefined') {
+            fbq('trackCustom', 'Scroll Bottom');
+            eventSent = true;
+            console.log('✅ Evento "Scroll Bottom" enviado a Meta Pixel');
+        } else {
+            console.warn('⚠️ Meta Pixel no disponible');
+        }
+    }
+
+    function calculateScrollPercentage() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calcular el porcentaje de scroll
+        const scrollableHeight = documentHeight - windowHeight;
+        const scrolled = (scrollTop / scrollableHeight) * 100;
+        
+        return Math.round(scrolled);
+    }
+
+    function handleScroll() {
+        if (eventSent) return;
+        
+        const scrollPercent = calculateScrollPercentage();
+        console.log('📊 Scroll:', scrollPercent + '%');
+        
+        if (scrollPercent >= SCROLL_PERCENTAGE) {
+            console.log('✨ Usuario llegó al ' + SCROLL_PERCENTAGE + '% de la página');
+            sendEvent();
+            // Remover el listener para ahorrar recursos
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }
+
+    // Agregar listener de scroll
+    window.addEventListener('scroll', handleScroll);
+    
+    // Verificar inmediatamente por si ya está en esa posición
+    handleScroll();
+    
+    console.log('👀 Detectando scroll de página (activación al ' + SCROLL_PERCENTAGE + '%)');
+})();
+</script>
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="reviews-container">
+                <header class="reviews-header">
+                    <h2>Comentarios</h2>
+                </header>
+
+                <div class="rating-summary">
+                    <div class="overall-rating">
+                        <span class="rating-number" id="overallRating">0.0</span>
+                        <span class="stars-large" id="overallStars">☆☆☆☆☆</span>
+                    </div>
+                    <div class="total-reviews" id="totalReviews">0 reseñas</div>
+                </div>
+
+                <div class="comments-section">
+                    <div class="loading" id="loading">Cargando comentarios...</div>
+                    <div id="commentsContainer"></div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Script de scroll optimizado -->
     <script>
-        (function(){
-            let eventSent=false,ticking=false;
-            const SCROLL_PERCENTAGE=75;
-            
-            function sendEvent(){
-                if(eventSent)return;
-                if(typeof fbq!=='undefined'){
-                    fbq('trackCustom','Scroll Bottom');
-                    eventSent=true;
-                }
-            }
-            
-            function handleScroll(){
-                if(eventSent||ticking)return;
-                ticking=true;
-                requestAnimationFrame(()=>{
-                    const scrollPercent=Math.round((window.pageYOffset/(document.documentElement.scrollHeight-window.innerHeight))*100);
-                    if(scrollPercent>=SCROLL_PERCENTAGE){
-                        sendEvent();
-                        window.removeEventListener('scroll',handleScroll);
-                    }
-                    ticking=false;
-                });
-            }
-            
-            if(document.readyState==='loading'){
-                document.addEventListener('DOMContentLoaded',()=>{
-                    window.addEventListener('scroll',handleScroll,{passive:true});
-                });
-            }else{
-                window.addEventListener('scroll',handleScroll,{passive:true});
-            }
-        })();
+  const commentsData=[{id:1,name:"Luis Mario",rating:5,date:"16/09/2025",comment:"Muy buen pack, super accesible para todo lo que incluye"},{id:2,name:"Evelin Jazmin",rating:5,date:"15/5/2025",comment:"Yo uso Autodesk Inventor y aun que las piezas no las pude abrir, los planos en pdf me han parecido exelentes para practicar, ya tengo conocimientos sobre el programa, pero en mis ratitos libres me gusta practicar y que mejor que con estos planos que están muy completos, me ha parecido una muy buena inversión"},{id:3,name:"Luis Felipe Lazaro Lopez",rating:5,date:"14/5/2025",comment:"Me parece interesante"},{id:4,name:"sergio",rating:5,date:"12/5/2025",comment:"ok"},{id:5,name:"sergio",rating:5,date:"8/5/2025",comment:""},{id:6,name:"Ernesto Silva Mendoza",rating:5,date:"27/4/2025",comment:"Muy buenos por lo que veo, solo falta inciar y practicar son solidworks."},{id:7,name:"Marcos",rating:5,date:"10/4/2025",comment:"Esta bien para practicar y aprender"},{id:8,name:"Braulio Sánchez Espinosa",rating:4.5,date:"7/4/2025",comment:"Me parece muy bien paquete, muy buena calidad y sobretodo muy prácticos.\nMe gustaría poder tener más planos, ya que la publicidad indica x, cantidad de ejercicios."},{id:9,name:"Angel Martinez Zavala",rating:5,date:"4/4/2025",comment:"Aun no inicio el curso pero los planos se ven muy bien"},{id:10,name:"eleazar castillo",rating:4.5,date:"2/4/2025",comment:"me gusta para practicar y mejorar"},{id:11,name:"rcuevas",rating:4,date:"31/3/2025",comment:""},{id:12,name:"Viviana Almeda",rating:5,date:"29/3/2025",comment:"Nuestro profe tambien nos pone tus videos y ejercicios 👍, los compré por que los queria todos completos"},{id:13,name:"Santiago Alexander",rating:5,date:"26/3/2025",comment:"al final el programa no me funcionó, me falto un paso, pero me ayudaron a repararlo, cuando termine el curso gratuito sin duda me inscribiré al de pago, muchas gracias"},{id:14,name:"Juan Ortiz Anguiano",rating:5,date:"26/3/2025",comment:"Muy bueno"},{id:15,name:"Octavio Ibarra Soto",rating:5,date:"24/3/2025",comment:""},{id:16,name:"Erik Daniel",rating:5,date:"23/3/2025",comment:"Tenia semanas intentando conseguir el programa, y aquí pude instalarlo muy facil, el material es muy bueno para ir empezando, tienen muy buena calidad"},{id:17,name:"Pablo",rating:5,date:"22/3/2025",comment:"😲 El profe de la uni dijo que le habian costado 500 pesos, y nos pidió cooperación, de haber sabido los hubiera comprado yo, si muy buen material"},{id:18,name:"carlos lerzo",rating:5,date:"6/3/2025",comment:"muy bueno"},{id:19,name:"Kevin",rating:5,date:"29/2/2025",comment:"Los pueden variar?"},{id:20,name:"Isaac Cereceres Pinedo",rating:4,date:"24/1/2025",comment:""},{id:21,name:"Nicole López",rating:5,date:"23/1/2025",comment:"Excelente curso"},{id:22,name:"jesus",rating:5,date:"13/12/2024",comment:"esta super cool el curso estoy aprendiendo mas de lo que e aprendido en la escuela"},{id:23,name:"Edwin",rating:5,date:"12/12/2024",comment:""},{id:24,name:"Alondra",rating:5,date:"22/11/2024",comment:"Muy buenos, me sirvieron mucho para practicar"},{id:25,name:"Miguel Angel",rating:5,date:"19/11/2024",comment:"alucinante"},{id:26,name:"Marcos ECHEVESTE",rating:4.5,date:"11/11/2024",comment:"muy buen paquete de piezas"},{id:27,name:"Leandro Grill",rating:5,date:"10/11/2024",comment:"Excelente material. Muy interesantes, prácticos y completos."},{id:28,name:"Victor",rating:5,date:"31/10/2024",comment:"Muy buena calidad y muy completos"},{id:29,name:"Victor",rating:5,date:"31/10/2024",comment:"Muy buena calidad y completos"},{id:30,name:"Mirko",rating:5,date:"30/10/2024",comment:"Descargue los ejercicios gratis y me fueron muy utiles, este paquete parece muy prometedor"},{id:31,name:"Jorge abraham",rating:5,date:"29/10/2024",comment:"Excelente  calidad"},{id:32,name:"Jesús",rating:5,date:"26/10/2024",comment:"La verdad esta super genial el paquete de ejercicios quiero aprender mucho más"},{id:33,name:"Federico Campos",rating:5,date:"22/10/2024",comment:"Excelentes"},{id:34,name:"Noriega Azcona Donovan Jessus",rating:5,date:"15/10/2024",comment:"Muy util y tambien muy bien explicado los videos"},{id:35,name:"ANGEL ROLANDO VALLEJO ALMANZA",rating:5,date:"14/10/2024",comment:"LLEVO DOS DIAS CON EL PAQUETE Y ME HA GUSTADO, MUCHAS GRACIAS EN UNOS DIAS ESPERO REGISTRARME EN SU CURSO."},{id:36,name:"Jose Gamez",rating:5,date:"14/10/2024",comment:"Excelente!"},{id:37,name:"Erika",rating:4.5,date:"9/10/2024",comment:"Por el momento bueno"},{id:38,name:"Santiago Vázquez Vera",rating:5,date:"28/9/2024",comment:"es muy bueno, lo recomiendo"},{id:39,name:"Santiago Vazquez Vera",rating:5,date:"27/9/2024",comment:"es muy bueno, lo recomiendo demasiado"},{id:40,name:"Alejandro Hernandez Jimenez",rating:5,date:"21/9/2024",comment:""},{id:41,name:"María Isabel",rating:5,date:"18/9/2024",comment:"Me ha gustado la calidad que tienen, si son de mucha ayuda, ya que se me complica a veces el programa y me gusta que trae la masa de la pieza para comprobarlas"},{id:42,name:"Oswaldo Cantú",rating:5,date:"17/9/2024",comment:"Me parecen excelentes para practicar. De gran calidad y de gran valor academico."},{id:43,name:"José Humberto",rating:5,date:"14/9/2024",comment:"Está muy bien la verdad, espero aprender más con estos planos"},{id:44,name:"carlos",rating:5,date:"14/9/2024",comment:"me fue de mucha ayuda"},{id:45,name:"César Roberto Saenz Alvidrez",rating:5,date:"13/9/2024",comment:"Me gusto"},{id:46,name:"Alejandro",rating:4,date:"24/5/2025",comment:"esta chido"},{id:47,name:"isaac ceereceres",rating:5,date:"8/6/2024",comment:"son muy buenos cursos ya que Diego tiena una manera muy clara de explicar las cosas, por lo que es muy facil aprender viendo"},{id:48,name:"Jaime Coronel",rating:5,date:"10/9/2024",comment:"Excelente  Material"},{id:49,name:"cristhian",rating:5,date:"7/10/2024",comment:""},{id:50,name:"Miguel Gabriel Coria Acosta",rating:5,date:"30/4/2025",comment:"Excelente material"},{id:51,name:"Eduardo",rating:4.5,date:"26/5/2025",comment:"Sugiero haya más videos de cada pieza."}];function getInitials(e){return e.split(" ").map(e=>e[0]).join("").toUpperCase().slice(0,2)}function createStars(e){let t="";for(let a=1;a<=5;a++)t+=a<=e?"★":"☆";return t}function formatDate(e){return e}function calculateOverallRating(e){if(0===e.length)return 0;const t=e.reduce((e,t)=>e+t.rating,0);return(t/e.length).toFixed(1)}let commentsLoaded=!1;function renderComments(){if(commentsLoaded)return;commentsLoaded=!0;const e=document.getElementById("commentsContainer"),t=document.getElementById("loading");setTimeout(()=>{t.style.display="none";const a=calculateOverallRating(commentsData);document.getElementById("overallRating").textContent=a,document.getElementById("overallStars").textContent=createStars(Math.round(parseFloat(a))),document.getElementById("totalReviews").textContent=`${commentsData.length} reseña${1!==commentsData.length?"s":""}`,0===commentsData.length?e.innerHTML='<div class="no-comments">No hay comentarios disponibles</div>':e.innerHTML=commentsData.map(e=>`<div class="comment fade-in"><div class="comment-header"><div class="user-info"><div class="user-avatar">${getInitials(e.name)}</div><div class="user-details"><h3>${e.name}</h3><div class="comment-date">${formatDate(e.date)}</div></div></div><div class="comment-rating"><span class="stars">${createStars(e.rating)}</span><span class="rating-value">${e.rating}</span></div></div><div class="comment-text">${e.comment||"Sin comentario adicional"}</div></div>`).join("")},500)}function initLazyLoadComments(){const e=document.querySelector(".reviews-section");if(!e)return void console.error("No se encontró la sección de reviews");const t=new IntersectionObserver(a=>{a.forEach(a=>{a.isIntersecting&&!commentsLoaded&&(console.log("Sección de comentarios visible, cargando..."),renderComments(),t.unobserve(e))})},{root:null,rootMargin:"200px",threshold:.1});t.observe(e)}document.addEventListener("DOMContentLoaded",function(){console.log("DOM cargado, iniciando lazy load..."),initLazyLoadComments()});
     </script>
+
 </body>
 </html>
