@@ -66,6 +66,9 @@
         gtag('config', 'G-QN502DE5XV');
     </script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" 
+      as="image" 
+      href="https://static.wixstatic.com/media/32c95b_f9b21a33914e4d69ac74aab1cc5e3613~mv2.webp">
        
 </head>
 
@@ -128,7 +131,9 @@
     <div class="curso-badge">🎓 BONUS INCLUIDO</div>
     <div class="curso-content">
         <div class="curso-image">
-            <img src="https://static.wixstatic.com/media/32c95b_f9b21a33914e4d69ac74aab1cc5e3613~mv2.webp" alt="Curso de Solidworks">
+            <img src="https://static.wixstatic.com/media/32c95b_f9b21a33914e4d69ac74aab1cc5e3613~mv2.webp" 
+     alt="Curso de Solidworks"
+     fetchpriority="high">  <!-- ← AGREGAR ESTO -->
         </div>
         <div class="curso-info">
             <h3>Curso Completo de SolidWorks</h3>
