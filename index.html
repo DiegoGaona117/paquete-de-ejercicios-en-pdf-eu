@@ -7,68 +7,69 @@
     <meta name="keywords" content="SolidWorks, planos PDF, ejercicios CAD, dibujo técnico, SolidWorks 2022, Diego Gaona">
     <meta name="author" content="Diego Gaona">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0066cc">
     
     <title>Paquete de dibujos en PDF + Piezas + Ensambles + SolidWorks 2022 | Diego Gaona</title>
-    <!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
     
-    fbq('init', '373277814132384');
+    <!-- Preconnect a dominios críticos -->
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="preconnect" href="https://www.facebook.com" crossorigin>
+    <link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+    <link rel="dns-prefetch" href="https://pay.hotmart.com">
     
-    // Detectar tipo de dispositivo
-    function detectarDispositivo() {
-        const ua = navigator.userAgent;
-        if (/iPad|Android(?!.*mobile)/i.test(ua)) {
-            return 'tablet';
-        } else if (/Mobile|iPhone|Android/i.test(ua)) {
-            return 'mobile';
-        } else {
-            return 'desktop';
+    <!-- CSS Crítico Inline (above the fold) -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1.6;color:#333;background:#f5f5f5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        .main-container{max-width:1200px;margin:0 auto;padding:20px;background:#fff;min-height:100vh}
+        .hero-section{display:grid;grid-template-columns:1fr;gap:30px;padding:40px 20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;border-radius:12px;margin-bottom:30px}
+        .hero-content h1{font-size:clamp(24px,5vw,36px);font-weight:700;margin-bottom:20px;line-height:1.2}
+        .rating{display:flex;align-items:center;gap:10px;margin:15px 0}
+        .rating-number{font-size:24px;font-weight:700}
+        .stars{color:#ffd700;font-size:20px;letter-spacing:2px}
+        .author{font-size:16px;opacity:.9;margin-bottom:20px}
+        .buy-button,.buy-button2{width:100%;padding:16px 32px;font-size:18px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:transform .2s,box-shadow .2s;margin-bottom:12px}
+        .buy-button{background:#ff6b35;color:#fff}
+        .buy-button:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(255,107,53,.3)}
+        .buy-button2{background:#fff;color:#667eea}
+        .buy-button2:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(102,126,234,.3)}
+        .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000}
+        .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+        .feature-card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,.1);margin-bottom:30px}
+        .package-title{font-size:24px;font-weight:700;color:#667eea;margin-bottom:20px}
+        .package-list{list-style:none;padding:0}
+        .package-list li{padding:12px 0;padding-left:28px;position:relative;border-bottom:1px solid #f0f0f0;font-size:16px}
+        .package-list li:before{content:'✓';position:absolute;left:0;color:#4caf50;font-weight:700;font-size:20px}
+        .package-list li:last-child{border-bottom:none}
+        .highlight{color:#ff6b35;font-weight:600}
+        @media (min-width:768px){
+            .hero-section{grid-template-columns:1fr 1fr;align-items:center;padding:60px 40px}
+            .main-container{padding:40px}
         }
-    }
+    </style>
     
-    // Enviar PageView normal
-    fbq('track', 'PageView');
+    <!-- Carga diferida del CSS completo -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     
-    // Enviar evento personalizado según el dispositivo
-    const dispositivo = detectarDispositivo();
-    
-    if (dispositivo === 'mobile') {
-        fbq('trackCustom', 'VisitaMobile');
-    } else if (dispositivo === 'tablet') {
-        fbq('trackCustom', 'VisitaTablet');
-    } else if (dispositivo === 'desktop') {
-        fbq('trackCustom', 'VisitaDesktop');
-    }
-    
-    // Para debugging
-    console.log('Meta Pixel - Eventos enviados:', {
-        PageView: true,
-        EventoDispositivo: 'Visita' + dispositivo.charAt(0).toUpperCase() + dispositivo.slice(1)
-    });
-</script>
-<noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
-    alt="Meta Pixel"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-     
-    <link rel="stylesheet" href="styles.css">
-       
+    <!-- Meta Pixel Code Optimizado -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init','373277814132384');
+        
+        // Detectar dispositivo (optimizado)
+        const ua=navigator.userAgent;
+        const dispositivo=/iPad|Android(?!.*mobile)/i.test(ua)?'tablet':/Mobile|iPhone|Android/i.test(ua)?'mobile':'desktop';
+        
+        fbq('track','PageView');
+        fbq('trackCustom','Visita'+dispositivo.charAt(0).toUpperCase()+dispositivo.slice(1));
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1" alt=""></noscript>
 </head>
 
 <body>
-    <!-- Main Container -->
     <div class="main-container">
-        
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
@@ -88,18 +89,19 @@
                 <a href="https://diegogaona117.github.io/curso-de-introduccion-a-solidworks-diego-gaona/" target="_blank" rel="noopener noreferrer">
                     <button class="buy-button2">Ver curso ¡Gratis!</button>
                 </a>
-                
-               <!-- <div class="tagline">¡El precio subirá cada día!</div>-->
             </div>
             
             <div class="video-container">
+                <!-- Lazy loading para YouTube -->
                 <iframe 
-                    src="https://www.youtube-nocookie.com/embed/iVwOJH0nfL4?rel=0&modestbranding=1" 
+                    src="about:blank"
+                    data-src="https://www.youtube-nocookie.com/embed/iVwOJH0nfL4?rel=0&modestbranding=1" 
                     title="Detalles paquete de ejercicios SolidWorks" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
-                    loading="lazy">
+                    loading="lazy"
+                    class="lazy-iframe">
                 </iframe>
             </div>
         </section>
@@ -117,32 +119,32 @@
                 <li><span class="highlight">+ Video de instalación paso a paso</span></li>
                 <li><strong>+ Bonus por tiempo limitado</strong></li>
                 <li><span class="highlight">Curso de Solidworks: desde cero a certificación Internacional CSWA</span></li>
-                <!--<li><span class="highlight">Curso de introducción Autodesk Inventor</span></li>
-                <li><span class="highlight">Curso de introducción Catia V5</span></li>
-                <li><span class="highlight">Teoría y aplicaciones de falla por carga estática</span></li>
-                <li><span class="highlight">Introducción a los mecanismos</span></li>
-                <li><span class="highlight">Curso de Introducción a AutoCad</span></li>
-                <li><span class="highlight">Curso de introducción FreeCad</span></li>
-                <li><span class="highlight">Curso de introducción Excel</span></li>-->
             </ul>
         </section>
 
-       <section class="curso-destacado">
-    <div class="curso-badge">🎓 BONUS INCLUIDO</div>
-    <div class="curso-content">
-        <div class="curso-image">
-            <img src="https://static.wixstatic.com/media/32c95b_f83fa9493f8848d097eb7ca19d85a58e~mv2.webp" alt="Curso de Solidworks">
-        </div>
-        <div class="curso-info">
-            <h3>Curso Completo de SolidWorks</h3>
-            <p class="curso-subtitle">Desde cero a certificación Internacional CSWA</p>
-            <p class="curso-description">Domina SolidWorks desde los fundamentos hasta prepararte para obtener tu certificación profesional reconocida internacionalmente.</p>
-            <a href="https://cursodiegogaona.teachable.com/p/curso-de-solidworks-2020-preparate-para-cswa-diego-gaona-40" target="_blank" rel="noopener noreferrer">
-                <button class="btn-ver-curso">Ver lo que incluye el curso →</button>
-            </a>
-        </div>
-    </div>
-</section>
+        <section class="curso-destacado">
+            <div class="curso-badge">🎓 BONUS INCLUIDO</div>
+            <div class="curso-content">
+                <div class="curso-image">
+                    <img 
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23667eea' width='400' height='300'/%3E%3C/svg%3E"
+                        data-src="https://static.wixstatic.com/media/32c95b_f83fa9493f8848d097eb7ca19d85a58e~mv2.webp" 
+                        alt="Curso de Solidworks"
+                        class="lazy-img"
+                        loading="lazy"
+                        width="400"
+                        height="300">
+                </div>
+                <div class="curso-info">
+                    <h3>Curso Completo de SolidWorks</h3>
+                    <p class="curso-subtitle">Desde cero a certificación Internacional CSWA</p>
+                    <p class="curso-description">Domina SolidWorks desde los fundamentos hasta prepararte para obtener tu certificación profesional reconocida internacionalmente.</p>
+                    <a href="https://cursodiegogaona.teachable.com/p/curso-de-solidworks-2020-preparate-para-cswa-diego-gaona-40" target="_blank" rel="noopener noreferrer">
+                        <button class="btn-ver-curso">Ver lo que incluye el curso →</button>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <!-- Installer Section -->
         <section class="installer-section">
@@ -150,21 +152,16 @@
                 <div class="header-content">
                     <div class="solidworks-logo">
                         <picture>
-                            <!-- Móvil (menos de 500px) -->
-                            <source media="(max-width: 499px)" 
-                                    srcset="https://static.wixstatic.com/media/32c95b_1fb5d39a16d2429aa1544093b5b87170~mv2.webp">
-                            
-                            <!-- Tablet (500px a 1024px) -->
-                            <source media="(min-width: 500px) and (max-width: 1024px)" 
-                                    srcset="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp">
-                            
-                            <!-- Desktop (más de 1024px) -->
-                            <img src="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp" 
-                                 alt="SolidWorks 2022 Logo" 
-                                 referrerpolicy="no-referrer"
-                                 loading="lazy"
-                                 width="400"
-                                 height="200">
+                            <source media="(max-width: 499px)" data-srcset="https://static.wixstatic.com/media/32c95b_1fb5d39a16d2429aa1544093b5b87170~mv2.webp">
+                            <source media="(min-width: 500px) and (max-width: 1024px)" data-srcset="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp">
+                            <img 
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'%3E%3Crect fill='%23667eea' width='400' height='200'/%3E%3C/svg%3E"
+                                data-src="https://static.wixstatic.com/media/32c95b_5aa4416daa504e57a95505a08d6e37f4~mv2.webp" 
+                                alt="SolidWorks 2022 Logo" 
+                                class="lazy-img"
+                                loading="lazy"
+                                width="400"
+                                height="200">
                         </picture>
                     </div>
                     <div class="header-text">
@@ -178,84 +175,110 @@
                 <div class="plans-showcase">
                     <p class="subtitle"><strong>Planos en PDF que incluye este paquete</strong></p>
                     <picture>
-                        <!-- Imagen para móvil (se carga en pantallas menores a 768px) -->
-                        <source media="(max-width: 500px)" 
-                                srcset="https://static.wixstatic.com/media/32c95b_9f05741cd961473f89ed4fe317e2f866~mv2.webp">
-                        
-                        <!-- Imagen para tablet (se carga en pantallas de 768px a 1023px) -->
-                        <source media="(min-width: 501px) and (max-width: 1023px)" 
-                                srcset="https://static.wixstatic.com/media/32c95b_fd3409c7c60b4c67aaa717e3923210f0~mv2.webp">
-                        
-                        <!-- Imagen para escritorio (por defecto, pantallas mayores a 1024px) -->
-                        <img src="https://static.wixstatic.com/media/32c95b_e2a09fdfc6d24c88a8e46118e156c8f1~mv2.webp" 
-                             alt="Ejemplos de planos técnicos de SolidWorks" 
-                             class="plans-image"
-                             referrerpolicy="no-referrer"
-                             loading="lazy"
-                             width="1200"
-                             height="800">
+                        <source media="(max-width: 500px)" data-srcset="https://static.wixstatic.com/media/32c95b_9f05741cd961473f89ed4fe317e2f866~mv2.webp">
+                        <source media="(min-width: 501px) and (max-width: 1023px)" data-srcset="https://static.wixstatic.com/media/32c95b_fd3409c7c60b4c67aaa717e3923210f0~mv2.webp">
+                        <img 
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%23f0f0f0' width='1200' height='800'/%3E%3C/svg%3E"
+                            data-src="https://static.wixstatic.com/media/32c95b_e2a09fdfc6d24c88a8e46118e156c8f1~mv2.webp" 
+                            alt="Ejemplos de planos técnicos de SolidWorks" 
+                            class="plans-image lazy-img"
+                            loading="lazy"
+                            width="1200"
+                            height="800">
                     </picture>
-                    <div class="image-overlay"></div>
                 </div>
             </div>
         </section>
+    </div>
 
-       <!-- Evento Meta Pixel: Scroll Bottom -->
-<script>
-(function() {
-    'use strict';
-    
-    let eventSent = false;
-    const SCROLL_PERCENTAGE = 75; // Porcentaje de scroll para activar
-
-    function sendEvent() {
-        if (eventSent) return;
+    <!-- Script de optimización (carga al final) -->
+    <script>
+        // Lazy loading de imágenes y iframes
+        (function(){
+            const lazyLoad=()=>{
+                const lazyImages=document.querySelectorAll('.lazy-img');
+                const lazyIframes=document.querySelectorAll('.lazy-iframe');
+                
+                const imageObserver=new IntersectionObserver((entries,observer)=>{
+                    entries.forEach(entry=>{
+                        if(entry.isIntersecting){
+                            const img=entry.target;
+                            const sources=img.parentElement.querySelectorAll('source[data-srcset]');
+                            sources.forEach(source=>{
+                                source.srcset=source.dataset.srcset;
+                                delete source.dataset.srcset;
+                            });
+                            if(img.dataset.src){
+                                img.src=img.dataset.src;
+                                delete img.dataset.src;
+                            }
+                            img.classList.remove('lazy-img');
+                            observer.unobserve(img);
+                        }
+                    });
+                },{rootMargin:'50px'});
+                
+                lazyImages.forEach(img=>imageObserver.observe(img));
+                
+                lazyIframes.forEach(iframe=>{
+                    const iframeObserver=new IntersectionObserver((entries,obs)=>{
+                        entries.forEach(entry=>{
+                            if(entry.isIntersecting){
+                                iframe.src=iframe.dataset.src;
+                                iframe.classList.remove('lazy-iframe');
+                                obs.unobserve(iframe);
+                            }
+                        });
+                    },{rootMargin:'100px'});
+                    iframeObserver.observe(iframe);
+                });
+            };
+            
+            if('IntersectionObserver' in window){
+                if(document.readyState==='loading'){
+                    document.addEventListener('DOMContentLoaded',lazyLoad);
+                }else{
+                    lazyLoad();
+                }
+            }else{
+                // Fallback para navegadores antiguos
+                document.querySelectorAll('.lazy-img').forEach(img=>{
+                    if(img.dataset.src)img.src=img.dataset.src;
+                });
+                document.querySelectorAll('.lazy-iframe').forEach(iframe=>{
+                    if(iframe.dataset.src)iframe.src=iframe.dataset.src;
+                });
+            }
+        })();
         
-        if (typeof fbq !== 'undefined') {
-            fbq('trackCustom', 'Scroll Bottom');
-            eventSent = true;
-            console.log('✅ Evento "Scroll Bottom" enviado a Meta Pixel');
-        } else {
-            console.warn('⚠️ Meta Pixel no disponible');
-        }
-    }
-
-    function calculateScrollPercentage() {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Calcular el porcentaje de scroll
-        const scrollableHeight = documentHeight - windowHeight;
-        const scrolled = (scrollTop / scrollableHeight) * 100;
-        
-        return Math.round(scrolled);
-    }
-
-    function handleScroll() {
-        if (eventSent) return;
-        
-        const scrollPercent = calculateScrollPercentage();
-        console.log('📊 Scroll:', scrollPercent + '%');
-        
-        if (scrollPercent >= SCROLL_PERCENTAGE) {
-            console.log('✨ Usuario llegó al ' + SCROLL_PERCENTAGE + '% de la página');
-            sendEvent();
-            // Remover el listener para ahorrar recursos
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }
-
-    // Agregar listener de scroll
-    window.addEventListener('scroll', handleScroll);
-    
-    // Verificar inmediatamente por si ya está en esa posición
-    handleScroll();
-    
-    console.log('👀 Detectando scroll de página (activación al ' + SCROLL_PERCENTAGE + '%)');
-})();
-</script>
-       
-
+        // Evento Scroll optimizado con throttle
+        (function(){
+            let eventSent=false,ticking=false;
+            const SCROLL_PERCENTAGE=75;
+            
+            function sendEvent(){
+                if(eventSent)return;
+                if(typeof fbq!=='undefined'){
+                    fbq('trackCustom','Scroll Bottom');
+                    eventSent=true;
+                }
+            }
+            
+            function handleScroll(){
+                if(eventSent||ticking)return;
+                ticking=true;
+                requestAnimationFrame(()=>{
+                    const scrollPercent=Math.round((window.pageYOffset/(document.documentElement.scrollHeight-window.innerHeight))*100);
+                    if(scrollPercent>=SCROLL_PERCENTAGE){
+                        sendEvent();
+                        window.removeEventListener('scroll',handleScroll);
+                    }
+                    ticking=false;
+                });
+            }
+            
+            window.addEventListener('scroll',handleScroll,{passive:true});
+        })();
+    </script>
 </body>
 </html>
