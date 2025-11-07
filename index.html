@@ -10,51 +10,65 @@
     
     <title>Paquete de dibujos en PDF + Piezas + Ensambles + SolidWorks 2022 | Diego Gaona</title>
     
-    <!-- Meta Pixel Code MEJORADO -->
+    <!-- ESTRATEGIA 1: Cargar el pixel ANTES que cualquier otra cosa -->
     <script>
-        // Variable global para rastrear el estado del pixel
-        window.pixelLoaded = false;
-        window.pixelLoadAttempts = 0;
-        window.maxPixelAttempts = 3;
+        // Timestamp de inicio
+        window.pageLoadStart = Date.now();
         
-        // Cola de eventos para ejecutar cuando el pixel esté listo
+        // Variables de tracking
+        window.pixelLoaded = false;
+        window.pixelPageViewSent = false;
         window.pixelQueue = [];
         
-        // Función para ejecutar eventos de la cola
+        // Función para enviar PageView de respaldo por imagen
+        window.sendFallbackPageView = function() {
+            if (!window.pixelPageViewSent) {
+                var img = document.createElement('img');
+                img.height = 1;
+                img.width = 1;
+                img.style.display = 'none';
+                img.src = 'https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1&cd[page_load_time]=' + (Date.now() - window.pageLoadStart);
+                document.body.appendChild(img);
+                console.log('📸 PageView enviado vía imagen de respaldo');
+            }
+        };
+        
+        // Ejecutar cola de eventos
         window.executePixelQueue = function() {
             if (window.pixelLoaded && typeof fbq !== 'undefined') {
                 while (window.pixelQueue.length > 0) {
-                    const event = window.pixelQueue.shift();
+                    var event = window.pixelQueue.shift();
                     try {
                         fbq(event.type, event.name, event.params);
-                        console.log('✅ Evento ejecutado desde cola:', event.name);
+                        console.log('✅ Evento desde cola:', event.name);
                     } catch (e) {
-                        console.error('❌ Error ejecutando evento de cola:', e);
+                        console.error('❌ Error en cola:', e);
                     }
                 }
             }
         };
         
-        // Función wrapper para fbq con verificación
+        // Función segura para enviar eventos
         window.safeFbq = function(type, name, params) {
             if (typeof fbq !== 'undefined') {
                 try {
-                    fbq(type, name, params);
-                    console.log('✅ Evento enviado inmediatamente:', name);
+                    fbq(type, name, params || {});
+                    console.log('✅ Evento enviado:', name);
                     return true;
                 } catch (e) {
                     console.error('❌ Error enviando evento:', e);
                     return false;
                 }
             } else {
-                // Agregar a la cola si el pixel no está listo
-                window.pixelQueue.push({ type, name, params });
-                console.log('⏳ Evento agregado a cola:', name);
+                window.pixelQueue.push({ type: type, name: name, params: params || {} });
+                console.log('⏳ Evento en cola:', name);
                 return false;
             }
         };
-        
-        // Cargar el pixel de Meta con manejo de errores
+    </script>
+    
+    <!-- ESTRATEGIA 2: Cargar pixel de forma SÍNCRONA y PRIORITARIA -->
+    <script>
         !function(f,b,e,v,n,t,s) {
             if(f.fbq) return;
             n=f.fbq=function(){
@@ -62,57 +76,68 @@
             };
             if(!f._fbq) f._fbq=n;
             n.push=n; n.loaded=!0; n.version='2.0';
-            n.queue=[]; t=b.createElement(e); t.async=!0;
-            t.src=v; s=b.getElementsByTagName(e)[0];
+            n.queue=[]; t=b.createElement(e); 
             
-            // Manejar carga exitosa
+            // CRÍTICO: Carga SÍNCRONA para máxima prioridad
+            t.async=false;
+            t.src=v; 
+            
             t.onload = function() {
                 window.pixelLoaded = true;
-                console.log('✅ Meta Pixel cargado exitosamente');
+                window.pixelPageViewSent = true;
+                console.log('✅ Pixel cargado - Tiempo:', (Date.now() - window.pageLoadStart) + 'ms');
                 window.executePixelQueue();
             };
             
-            // Manejar errores de carga
             t.onerror = function() {
-                window.pixelLoadAttempts++;
-                console.error('❌ Error cargando Meta Pixel. Intento ' + window.pixelLoadAttempts);
-                
-                // Reintentar si no se ha alcanzado el máximo
-                if (window.pixelLoadAttempts < window.maxPixelAttempts) {
-                    console.log('🔄 Reintentando cargar pixel en 2 segundos...');
-                    setTimeout(function() {
-                        var newScript = document.createElement('script');
-                        newScript.async = true;
-                        newScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
-                        newScript.onload = t.onload;
-                        newScript.onerror = t.onerror;
-                        document.head.appendChild(newScript);
-                    }, 2000);
-                } else {
-                    console.error('❌ No se pudo cargar el Meta Pixel después de ' + window.maxPixelAttempts + ' intentos');
-                }
+                console.error('❌ Error pixel - usando respaldo');
+                setTimeout(window.sendFallbackPageView, 100);
             };
             
+            s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s);
         }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
         
-        // Inicializar el pixel
+        // Inicializar INMEDIATAMENTE
         fbq('init', '373277814132384');
         fbq('track', 'PageView');
         
-        // Verificar carga después de 5 segundos
-        setTimeout(function() {
-            if (!window.pixelLoaded) {
-                console.warn('⚠️ Meta Pixel no se cargó en 5 segundos. Puede estar bloqueado.');
-            }
-        }, 5000);
+        console.log('🚀 Pixel iniciado - Tiempo:', (Date.now() - window.pageLoadStart) + 'ms');
     </script>
     
+    <!-- ESTRATEGIA 3: Respaldo con imagen noscript mejorado -->
     <noscript>
         <img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=373277814132384&ev=PageView&noscript=1"
         alt="Meta Pixel"/>
     </noscript>
+    
+    <!-- ESTRATEGIA 4: Timeout de seguridad -->
+    <script>
+        // Si después de 3 segundos el pixel no cargó, usar respaldo
+        setTimeout(function() {
+            if (!window.pixelPageViewSent) {
+                console.warn('⏰ Timeout: Pixel tardó más de 3s, usando respaldo');
+                window.sendFallbackPageView();
+            }
+        }, 3000);
+        
+        // Intentar antes de que el usuario cierre la página
+        window.addEventListener('beforeunload', function() {
+            if (!window.pixelPageViewSent) {
+                console.warn('⚠️ Usuario cerrando página, enviando respaldo urgente');
+                window.sendFallbackPageView();
+            }
+        });
+        
+        // Enviar respaldo si el usuario está por salir (para móviles)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && !window.pixelPageViewSent) {
+                console.warn('👋 Usuario saliendo, enviando respaldo');
+                window.sendFallbackPageView();
+            }
+        });
+    </script>
      
     <link rel="stylesheet" href="styles.css">
     <link rel="preload" 
@@ -270,7 +295,7 @@
 
     </div>
 
-    <!-- Script de Scroll Bottom MEJORADO -->
+    <!-- ESTRATEGIA 5: Evento de Scroll mejorado -->
     <script>
     (function() {
         'use strict';
@@ -280,20 +305,13 @@
         
         function sendScrollEvent() {
             if (eventSent) return;
-            
             eventSent = true;
             
-            // Usar la función segura
-            const success = window.safeFbq('trackCustom', 'Scroll Bottom', {
+            window.safeFbq('trackCustom', 'Scroll Bottom', {
                 scroll_percentage: SCROLL_PERCENTAGE,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                time_on_page: Math.round((Date.now() - window.pageLoadStart) / 1000)
             });
-            
-            if (success) {
-                console.log('✅ Evento "Scroll Bottom" enviado inmediatamente');
-            } else {
-                console.log('⏳ Evento "Scroll Bottom" en cola, se enviará cuando el pixel cargue');
-            }
         }
         
         function calculateScrollPercentage() {
@@ -307,57 +325,60 @@
         
         function handleScroll() {
             if (eventSent) return;
-            
             const scrollPercent = calculateScrollPercentage();
-            
             if (scrollPercent >= SCROLL_PERCENTAGE) {
-                console.log('✨ Usuario llegó al ' + SCROLL_PERCENTAGE + '% de la página');
                 sendScrollEvent();
                 window.removeEventListener('scroll', handleScroll);
             }
         }
         
-        // Esperar a que el DOM esté listo
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function() {
                 window.addEventListener('scroll', handleScroll);
-                handleScroll(); // Verificar posición inicial
+                handleScroll();
             });
         } else {
             window.addEventListener('scroll', handleScroll);
             handleScroll();
         }
-        
-        console.log('👀 Detector de scroll iniciado (activación al ' + SCROLL_PERCENTAGE + '%)');
     })();
     </script>
     
-    <!-- Script de diagnóstico (REMOVER EN PRODUCCIÓN) -->
+    <!-- DIAGNÓSTICO DETALLADO -->
     <script>
-    // Este script te ayudará a diagnosticar problemas
     window.addEventListener('load', function() {
         setTimeout(function() {
-            console.log('📊 DIAGNÓSTICO DEL PIXEL:');
-            console.log('- Pixel cargado:', window.pixelLoaded);
-            console.log('- fbq disponible:', typeof fbq !== 'undefined');
-            console.log('- Eventos en cola:', window.pixelQueue.length);
-            console.log('- Intentos de carga:', window.pixelLoadAttempts);
+            const loadTime = Date.now() - window.pageLoadStart;
+            console.log('📊 === REPORTE FINAL ===');
+            console.log('⏱️ Tiempo de carga:', loadTime + 'ms');
+            console.log('🎯 Pixel cargado:', window.pixelLoaded);
+            console.log('📬 PageView enviado:', window.pixelPageViewSent);
+            console.log('📦 Eventos en cola:', window.pixelQueue.length);
+            console.log('🔧 fbq disponible:', typeof fbq !== 'undefined');
             
             if (window.pixelQueue.length > 0) {
-                console.log('⚠️ Hay eventos pendientes en la cola:', window.pixelQueue);
-            }
-            
-            // Intentar ejecutar cola una vez más
-            if (typeof fbq !== 'undefined') {
+                console.warn('⚠️ Eventos pendientes:', window.pixelQueue);
                 window.executePixelQueue();
             }
-        }, 3000);
+            
+            // Métricas para Meta
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'PageLoadTime', {
+                    load_time_ms: loadTime,
+                    pixel_loaded: window.pixelLoaded,
+                    page_view_sent: window.pixelPageViewSent
+                });
+            }
+            
+            console.log('✅ Diagnóstico completo');
+        }, 2000);
     });
     </script>
 
     <script>
   const commentsData=[{id:1,name:"Luis Mario",rating:5,date:"16/09/2025",comment:"Muy buen pack, super accesible para todo lo que incluye"},{id:2,name:"Evelin Jazmin",rating:5,date:"15/5/2025",comment:"Yo uso Autodesk Inventor y aun que las piezas no las pude abrir, los planos en pdf me han parecido exelentes para practicar, ya tengo conocimientos sobre el programa, pero en mis ratitos libres me gusta practicar y que mejor que con estos planos que están muy completos, me ha parecido una muy buena inversión"},{id:3,name:"Luis Felipe Lazaro Lopez",rating:5,date:"14/5/2025",comment:"Me parece interesante"},{id:4,name:"sergio",rating:5,date:"12/5/2025",comment:"ok"},{id:5,name:"sergio",rating:5,date:"8/5/2025",comment:""},{id:6,name:"Ernesto Silva Mendoza",rating:5,date:"27/4/2025",comment:"Muy buenos por lo que veo, solo falta inciar y practicar son solidworks."},{id:7,name:"Marcos",rating:5,date:"10/4/2025",comment:"Esta bien para practicar y aprender"},{id:8,name:"Braulio Sánchez Espinosa",rating:4.5,date:"7/4/2025",comment:"Me parece muy bien paquete, muy buena calidad y sobretodo muy prácticos.\nMe gustaría poder tener más planos, ya que la publicidad indica x, cantidad de ejercicios."},{id:9,name:"Angel Martinez Zavala",rating:5,date:"4/4/2025",comment:"Aun no inicio el curso pero los planos se ven muy bien"},{id:10,name:"eleazar castillo",rating:4.5,date:"2/4/2025",comment:"me gusta para practicar y mejorar"},{id:11,name:"rcuevas",rating:4,date:"31/3/2025",comment:""},{id:12,name:"Viviana Almeda",rating:5,date:"29/3/2025",comment:"Nuestro profe tambien nos pone tus videos y ejercicios 👍, los compré por que los queria todos completos"},{id:13,name:"Santiago Alexander",rating:5,date:"26/3/2025",comment:"al final el programa no me funcionó, me falto un paso, pero me ayudaron a repararlo, cuando termine el curso gratuito sin duda me inscribiré al de pago, muchas gracias"},{id:14,name:"Juan Ortiz Anguiano",rating:5,date:"26/3/2025",comment:"Muy bueno"},{id:15,name:"Octavio Ibarra Soto",rating:5,date:"24/3/2025",comment:""},{id:16,name:"Erik Daniel",rating:5,date:"23/3/2025",comment:"Tenia semanas intentando conseguir el programa, y aquí pude instalarlo muy facil, el material es muy bueno para ir empezando, tienen muy buena calidad"},{id:17,name:"Pablo",rating:5,date:"22/3/2025",comment:"😲 El profe de la uni dijo que le habian costado 500 pesos, y nos pidió cooperación, de haber sabido los hubiera comprado yo, si muy buen material"},{id:18,name:"carlos lerzo",rating:5,date:"6/3/2025",comment:"muy bueno"},{id:19,name:"Kevin",rating:5,date:"29/2/2025",comment:"Los pueden variar?"},{id:20,name:"Isaac Cereceres Pinedo",rating:4,date:"24/1/2025",comment:""},{id:21,name:"Nicole López",rating:5,date:"23/1/2025",comment:"Excelente curso"},{id:22,name:"jesus",rating:5,date:"13/12/2024",comment:"esta super cool el curso estoy aprendiendo mas de lo que e aprendido en la escuela"},{id:23,name:"Edwin",rating:5,date:"12/12/2024",comment:""},{id:24,name:"Alondra",rating:5,date:"22/11/2024",comment:"Muy buenos, me sirvieron mucho para practicar"},{id:25,name:"Miguel Angel",rating:5,date:"19/11/2024",comment:"alucinante"},{id:26,name:"Marcos ECHEVESTE",rating:4.5,date:"11/11/2024",comment:"muy buen paquete de piezas"},{id:27,name:"Leandro Grill",rating:5,date:"10/11/2024",comment:"Excelente material. Muy interesantes, prácticos y completos."},{id:28,name:"Victor",rating:5,date:"31/10/2024",comment:"Muy buena calidad y muy completos"},{id:29,name:"Victor",rating:5,date:"31/10/2024",comment:"Muy buena calidad y completos"},{id:30,name:"Mirko",rating:5,date:"30/10/2024",comment:"Descargue los ejercicios gratis y me fueron muy utiles, este paquete parece muy prometedor"},{id:31,name:"Jorge abraham",rating:5,date:"29/10/2024",comment:"Excelente  calidad"},{id:32,name:"Jesús",rating:5,date:"26/10/2024",comment:"La verdad esta super genial el paquete de ejercicios quiero aprender mucho más"},{id:33,name:"Federico Campos",rating:5,date:"22/10/2024",comment:"Excelentes"},{id:34,name:"Noriega Azcona Donovan Jessus",rating:5,date:"15/10/2024",comment:"Muy util y tambien muy bien explicado los videos"},{id:35,name:"ANGEL ROLANDO VALLEJO ALMANZA",rating:5,date:"14/10/2024",comment:"LLEVO DOS DIAS CON EL PAQUETE Y ME HA GUSTADO, MUCHAS GRACIAS EN UNOS DIAS ESPERO REGISTRARME EN SU CURSO."},{id:36,name:"Jose Gamez",rating:5,date:"14/10/2024",comment:"Excelente!"},{id:37,name:"Erika",rating:4.5,date:"9/10/2024",comment:"Por el momento bueno"},{id:38,name:"Santiago Vázquez Vera",rating:5,date:"28/9/2024",comment:"es muy bueno, lo recomiendo"},{id:39,name:"Santiago Vazquez Vera",rating:5,date:"27/9/2024",comment:"es muy bueno, lo recomiendo demasiado"},{id:40,name:"Alejandro Hernandez Jimenez",rating:5,date:"21/9/2024",comment:""},{id:41,name:"María Isabel",rating:5,date:"18/9/2024",comment:"Me ha gustado la calidad que tienen, si son de mucha ayuda, ya que se me complica a veces el programa y me gusta que trae la masa de la pieza para comprobarlas"},{id:42,name:"Oswaldo Cantú",rating:5,date:"17/9/2024",comment:"Me parecen excelentes para practicar. De gran calidad y de gran valor academico."},{id:43,name:"José Humberto",rating:5,date:"14/9/2024",comment:"Está muy bien la verdad, espero aprender más con estos planos"},{id:44,name:"carlos",rating:5,date:"14/9/2024",comment:"me fue de mucha ayuda"},{id:45,name:"César Roberto Saenz Alvidrez",rating:5,date:"13/9/2024",comment:"Me gusto"},{id:46,name:"Alejandro",rating:4,date:"24/5/2025",comment:"esta chido"},{id:47,name:"isaac ceereceres",rating:5,date:"8/6/2024",comment:"son muy buenos cursos ya que Diego tiena una manera muy clara de explicar las cosas, por lo que es muy facil aprender viendo"},{id:48,name:"Jaime Coronel",rating:5,date:"10/9/2024",comment:"Excelente  Material"},{id:49,name:"cristhian",rating:5,date:"7/10/2024",comment:""},{id:50,name:"Miguel Gabriel Coria Acosta",rating:5,date:"30/4/2025",comment:"Excelente material"},{id:51,name:"Eduardo",rating:4.5,date:"26/5/2025",comment:"Sugiero haya más videos de cada pieza."}];function getInitials(e){return e.split(" ").map(e=>e[0]).join("").toUpperCase().slice(0,2)}function createStars(e){let t="";for(let a=1;a<=5;a++)t+=a<=e?"★":"☆";return t}function formatDate(e){return e}function calculateOverallRating(e){if(0===e.length)return 0;const t=e.reduce((e,t)=>e+t.rating,0);return(t/e.length).toFixed(1)}let commentsLoaded=!1;function renderComments(){if(commentsLoaded)return;commentsLoaded=!0;const e=document.getElementById("commentsContainer"),t=document.getElementById("loading");setTimeout(()=>{t.style.display="none";const a=calculateOverallRating(commentsData);document.getElementById("overallRating").textContent=a,document.getElementById("overallStars").textContent=createStars(Math.round(parseFloat(a))),document.getElementById("totalReviews").textContent=`${commentsData.length} reseña${1!==commentsData.length?"s":""}`,0===commentsData.length?e.innerHTML='<div class="no-comments">No hay comentarios disponibles</div>':e.innerHTML=commentsData.map(e=>`<div class="comment fade-in"><div class="comment-header"><div class="user-info"><div class="user-avatar">${getInitials(e.name)}</div><div class="user-details"><h3>${e.name}</h3><div class="comment-date">${formatDate(e.date)}</div></div></div><div class="comment-rating"><span class="stars">${createStars(e.rating)}</span><span class="rating-value">${e.rating}</span></div></div><div class="comment-text">${e.comment||"Sin comentario adicional"}</div></div>`).join("")},500)}function initLazyLoadComments(){const e=document.querySelector(".reviews-section");if(!e)return void console.error("No se encontró la sección de reviews");const t=new IntersectionObserver(a=>{a.forEach(a=>{a.isIntersecting&&!commentsLoaded&&(console.log("Sección de comentarios visible, cargando..."),renderComments(),t.unobserve(e))})},{root:null,rootMargin:"200px",threshold:.1});t.observe(e)}document.addEventListener("DOMContentLoaded",function(){console.log("DOM cargado, iniciando lazy load..."),initLazyLoadComments()});
     </script>
+    
     <script>
 // YouTube Lazy Load
 (function() {
