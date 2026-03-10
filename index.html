@@ -94,7 +94,7 @@
 
     .subtitle {
       font-size: clamp(13px, 3.5vw, 15px);
-      color: var(--muted);
+      color: #e0e0e0;
       text-align: center;
       line-height: 1.65;
       max-width: 380px;
@@ -183,7 +183,7 @@
       align-items: flex-start;
       gap: 12px;
       font-size: clamp(13px, 3.5vw, 14px);
-      color: #c8c8c8;
+      color: #ffffff;
       line-height: 1.55;
       font-weight: 400;
     }
@@ -266,6 +266,34 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* YouTube Facade */
+    .yt-facade {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background: #000;
+    }
+
+    .yt-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.15s ease, opacity 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .yt-facade:hover .yt-play,
+    .yt-facade:active .yt-play {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 0.9;
+    }
+
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,24,0.35); }
       50%       { box-shadow: 0 0 0 12px rgba(245,197,24,0); }
@@ -346,5 +374,14 @@
   </div>
 
 </div>
+
+  <script>
+    document.getElementById('ytFacade').addEventListener('click', function() {
+      this.style.display = 'none';
+      var iframe = document.getElementById('ytIframe');
+      iframe.src = 'https://www.youtube.com/embed/iVwOJH0nfL4?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      iframe.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
