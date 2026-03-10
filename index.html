@@ -286,8 +286,25 @@
   <p class="subtitle">Mira exactamente qué incluye el paquete y decide si es para ti.</p>
 
   <div class="video-wrap">
+    <div class="yt-facade" id="ytFacade">
+      <img
+        src="https://i.ytimg.com/vi/iVwOJH0nfL4/hqdefault.jpg"
+        alt="Ver video del paquete"
+        loading="lazy"
+        decoding="async"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      />
+      <button class="yt-play" aria-label="Reproducir video">
+        <svg viewBox="0 0 68 48" width="68" height="48">
+          <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56 0 34 0 34 0S12 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.3 0 24 0 24s0 11.7 1.5 16.3a8.5 8.5 0 0 0 6 6C12 48 34 48 34 48s22 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.7 68 24 68 24s0-11.7-1.5-16.3z" fill="#ff0000"/>
+          <path d="M27 34l18-10-18-10v20z" fill="#fff"/>
+        </svg>
+      </button>
+    </div>
     <iframe
-      src="https://www.youtube.com/embed/iVwOJH0nfL4?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+      id="ytIframe"
+      style="display:none;width:100%;height:100%;border:none;"
+      src=""
       allow="autoplay; encrypted-media; fullscreen"
       allowfullscreen>
     </iframe>
